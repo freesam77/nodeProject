@@ -1,0 +1,8 @@
+{
+  "name": "personal",
+  "version": "1.0.0",
+  "description": "node project 2021",
+  "main": "index.js",
+  "author": "Samuel Razali",
+  "license": "MIT"
+}
