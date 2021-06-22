@@ -4,5 +4,11 @@
   "description": "node project 2021",
   "main": "index.js",
   "author": "Samuel Razali",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
 }

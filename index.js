@@ -1,7 +1,9 @@
 const http = require('http')
+const fs = require('fs')
 
 const server = http.createServer((req, res) => {
-    if (req.url === "/") {
+    const { url, method } = req
+    if (url === "/") {
         res.write(`
             <html>
                 <body>
@@ -15,6 +17,16 @@ const server = http.createServer((req, res) => {
         `)
         return res.end()
     }
+
+    if (url === '/message' && method === 'POST') {
+        const data = "DUMMY TEXTss"
+        fs.writeFileSync('message.txt', data)
+        res.statusCode = 302;
+        res.setHeader('Location', '/')
+        return res.end();
+
+    }
 })
 
+console.log('Server ON')
 server.listen('3000')
