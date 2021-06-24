@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
                 <body>
                     <h1>hello</h1>
                     <form action="/message" method="POST">
-                        <input type="text"/>
+                        <input type="text" name="message"/>
                         <button type"submit">Submit</button>
                     </form
                 </body>
@@ -19,8 +19,21 @@ const server = http.createServer((req, res) => {
     }
 
     if (url === '/message' && method === 'POST') {
-        const data = "DUMMY TEXTss"
-        fs.writeFileSync('message.txt', data)
+
+        // parsing request bodies
+        const body = [];
+        req.on('data', (chunk) => {
+            console.log('chunk', chunk)
+            body.push(chunk)
+        })
+
+        req.on('end', () => {
+            const parsedBody = Buffer.concat(body).toString();
+            const mes = parsedBody.split('=')[1]
+            console.log("mes", mes)
+            fs.writeFileSync('message.txt', mes)
+        })
+
         res.statusCode = 302;
         res.setHeader('Location', '/')
         return res.end();
