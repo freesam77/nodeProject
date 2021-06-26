@@ -1,0 +1,13 @@
+{
+  "name": "assignment1",
+  "version": "1.0.0",
+  "description": "assignment 1 for udemy course",
+  "main": "index.js",
+  "repository": "https://github.com/freesam77/nodeProject",
+  "author": "Samuel Razali <samuelrazali@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {"start": "nodemon index.js"}
+}
