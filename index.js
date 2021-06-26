@@ -25,18 +25,21 @@ const server = http.createServer((req, res) => {
         req.on('data', (chunk) => {
             console.log('chunk', chunk)
             body.push(chunk)
+            console.log('body', body)
         })
 
         req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
-            const mes = parsedBody.split('=')[1]
+            const mes = parsedBody.split('=')[1].replace(/[+]/g, " ")
             console.log("mes", mes)
-            fs.writeFileSync('message.txt', mes)
+            fs.writeFile('message.txt', mes, () => {
+                res.statusCode = 302;
+                res.setHeader('Location', '/')
+                return res.end();
+
+            })
         })
 
-        res.statusCode = 302;
-        res.setHeader('Location', '/')
-        return res.end();
 
     }
 })
