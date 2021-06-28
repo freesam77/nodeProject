@@ -1,3 +1,4 @@
+// redundant file now since we are using express
 const fs = require('fs')
 
 const reqHandler = (req, res) => {
