@@ -1,16 +1,9 @@
 const express = require('express')
+const path = require('path')
 const router = express.Router()
 
 router.get('/users', (req, res, next) => {
-    const form = `
-    <h1>Please type your user name and click submit</h1>
-        <form method="POST" action="/admin/users">
-            <input type="text" name="title"/>
-            <button type="submit">Submit</button>
-        </form>
-    `
-    res.send(form)
-    next()
+    res.sendFile(path.join(__dirname, '../', 'views', 'admin.html'))
 })
 
 router.post('/users', (req, res, next) => {

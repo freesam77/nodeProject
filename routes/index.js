@@ -7,7 +7,6 @@ router.get('/', (req, res, next) => {
     <a href="/admin/users">Go to Users Page</a>
     `
     res.send(form)
-    next()
 })
 
 module.exports = router
