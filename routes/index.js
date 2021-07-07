@@ -1,12 +1,10 @@
 const express = require('express')
+const path = require('path')
 const router = express.Router()
+const rootDir = require('../util/path')
 
-router.get('/', (req, res, next) => {
-    const form = `
-    <h1>Welcome</h1>
-    <a href="/admin/users">Go to Users Page</a>
-    `
-    res.send(form)
+router.get('/', (_req, res, _next) => {
+    res.sendFile(path.join(rootDir, 'views', 'index.html'))
 })
 
 module.exports = router
