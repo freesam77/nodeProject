@@ -3,15 +3,18 @@ const path = require('path')
 const router = express.Router()
 const rootDir = require('../util/path')
 
+const users = []
+
 router.get('/users', (req, res, next) => {
     res.sendFile(path.join(rootDir, 'views', 'admin.html'))
 })
 
 router.post('/users', (req, res, next) => {
-    console.log(req.body)
+    users.push(req.body)
     res.redirect('/')
     return res.end()
 })
 
 
-module.exports = router
+exports.routes = router;
+exports.users = users;

@@ -8,7 +8,7 @@ const rootDir = require('./util/path')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
 
-app.use('/admin', adminRoutes)
+app.use('/admin', adminRoutes.routes)
 app.use(indexRoutes)
 
 // handle 404 error page
