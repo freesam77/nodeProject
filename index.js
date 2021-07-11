@@ -5,8 +5,12 @@ const adminRoutes = require('./routes/admin')
 const indexRoutes = require('./routes/index')
 const rootDir = require('./util/path')
 
+app.set('view engine', 'pug')
+app.set('views', 'views')
+
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
+
 
 app.use('/admin', adminRoutes.routes)
 app.use(indexRoutes)
