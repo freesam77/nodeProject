@@ -5,7 +5,11 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="/css/style.css")
-        block head
+        title #{title}
 
     body 
-        block content
+        .nav
+            a(href="/", id=(path === '/' ? 'active' : '')) Home 
+            a(href="/admin/users", id=(path === '/admin/users' ? 'active' : '')) Admin
+        .content
+            block content

@@ -1,7 +1,4 @@
 extends layouts/main-layout.pug
-
-block head 
-    title Admin Page
 block content
     h1 Please type your user name and click submit
         form(method="POST" action="/admin/users")
@@ -11,4 +8,3 @@ block content
     ul
     each user in users 
         li #{user.name}
-    a(href="/") Home
