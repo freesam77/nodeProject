@@ -7,7 +7,7 @@ const rootDir = require('./util/path');
 
 const app = express();
 
-app.engine('hbs', expressHbs({ defaultLayout: false }))
+app.engine('hbs', expressHbs({ extname: 'hbs', layoutsDir: 'views/layouts/', defaultLayout: 'main-layout' }))
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
