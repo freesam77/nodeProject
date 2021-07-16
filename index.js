@@ -1,4 +1,5 @@
 const express = require('express');
+const expressHbs = require('express-handlebars');
 const path = require('path');
 const adminRoutes = require('./routes/admin');
 const indexRoutes = require('./routes/index');
@@ -6,7 +7,8 @@ const rootDir = require('./util/path');
 
 const app = express();
 
-app.set('view engine', 'pug');
+app.engine('hbs', expressHbs({ defaultLayout: false }))
+app.set('view engine', 'hbs');
 app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: false }));
@@ -17,7 +19,7 @@ app.use(indexRoutes);
 
 // handle 404 error page
 app.use((_req, res, _next) => {
-    res.status(404).render('404', {title: '404 Page not found'});
+    res.status(404).render('404', { title: '404 Page not found' });
 });
 
 app.listen(3000);
