@@ -17,7 +17,8 @@ app.use(indexRoutes);
 
 // handle 404 error page
 app.use((_req, res, _next) => {
-  res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
+    //   res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
+    res.status(404).render('404');
 });
 
 app.listen(3000);

@@ -1,12 +1,7 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet" href="/css/style.css")
-        title Home Page
+extends layouts/main-layout.pug
+block head 
+    title Home Page
 
-    body 
-        h1.main-header Welcome, #{user}!
-        a(href="/admin/users") Go to Users page
+block content
+    h1.main-header Welcome, #{user}!
+    a(href="/admin/users") Go to Users page
