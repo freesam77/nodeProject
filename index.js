@@ -19,8 +19,8 @@ app.use('/admin', adminRoutes.routes);
 app.use(indexRoutes);
 
 // handle 404 error page
-app.use((_req, res, _next) => {
-    res.status(404).render('404', { title: '404 Page not found' });
+app.use((req, res, _next) => {
+  res.status(404).render('404', { title: '404 Page not found', path: req.url });
 });
 
 app.listen(3000);

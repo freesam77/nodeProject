@@ -11,9 +11,6 @@
     <div class="nav">
         <a href="/" id="{{#if activeHome}}active{{/if}}">Home</a>
         <a href="/admin/users" id="{{#if activeAdminUsers}}active{{/if}}">Admin</a>
-        {{!-- TODO: make these ternary condition works --}}
-        {{!-- <a href="/" id="{{path === '/' ? 'active' : ''}}">Home</a>
-        <a href="/admin/users" id="{{path === '/admin/users' ? 'active' : ''}}">Admin</a> --}}
     </div>
     <div class="content">
         {{{ body }}}
