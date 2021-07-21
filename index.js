@@ -15,7 +15,7 @@ app.set('views', 'views');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
 
-app.use('/admin', adminRoutes.routes);
+app.use('/admin', adminRoutes);
 app.use(indexRoutes);
 
 // handle 404 error page

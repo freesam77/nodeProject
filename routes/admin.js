@@ -1,23 +1,12 @@
 const express = require('express');
 
+const usersController = require('../controllers/users');
+
 const router = express.Router();
 
-const users = [];
+const { getUsers, postUsers } = usersController;
 
-router.get('/users', (req, res, next) => {
-  res.render('admin', {
-    users,
-    path: `/admin${req.url}`,
-    activeAdminUsers: true,
-    title: 'Users',
-  });
-});
+router.get('/users', getUsers);
+router.post('/users', postUsers);
 
-router.post('/users', (req, res, next) => {
-  users.push(req.body);
-  res.redirect('back');
-  return res.end();
-});
-
-exports.routes = router;
-exports.users = users;
+module.exports = router
