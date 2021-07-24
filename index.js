@@ -4,7 +4,7 @@ const path = require('path');
 const adminRoutes = require('./routes/admin');
 const indexRoutes = require('./routes/index');
 const rootDir = require('./util/path');
-
+const { get404 } = require('./controllers/error')
 const app = express();
 
 // app.engine('hbs', expressHbs({ extname: 'hbs', layoutsDir: 'views/layouts/', defaultLayout: 'main-layout' }))
@@ -19,8 +19,6 @@ app.use('/admin', adminRoutes);
 app.use(indexRoutes);
 
 // handle 404 error page
-app.use((req, res, _next) => {
-  res.status(404).render('404', { title: '404 Page not found', path: req.url });
-});
+app.use(get404);
 
 app.listen(3000);
