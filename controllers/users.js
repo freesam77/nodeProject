@@ -1,7 +1,8 @@
-const users = [];
+const Users = require('../models/users');
+
 exports.getUsers = (req, res, next) => {
   res.render('admin', {
-    users,
+    users: Users.getUsers(),
     path: `/admin${req.url}`,
     activeAdminUsers: true,
     title: 'Users',
@@ -9,7 +10,8 @@ exports.getUsers = (req, res, next) => {
 };
 
 exports.postUsers = (req, res, next) => {
-  users.push(req.body);
+  const users = new Users(req.body.name);
+  users.saveUsers();
   res.redirect('back');
   return res.end();
 };
