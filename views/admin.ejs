@@ -4,10 +4,14 @@
   <input type="text" name="name" />
   <button type="submit">Submit</button>
   <h1>Users list:</h1>
+  <% if (users && users.length) { %>
   <ul>
     <% users.map(({name}) => { %>
     <li><%= name %></li>
     <% }) %>
   </ul>
+  <% } else {%>
+  <h2>No users found!</h2>
+  <% }%>
 </form>
 <%- include('includes/end.ejs') %>
