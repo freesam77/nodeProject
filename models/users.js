@@ -24,18 +24,17 @@ module.exports = class Users {
     });
   }
 
-  static getUsers() {
+  static getUsers(callBack) {
     fs.readFile(mainpath, (err, fileContent) => {
       if (err) {
-        console.log(err);
-        return [];
+        callBack([]);
       }
       const data = JSON.parse(fileContent);
       const newUsers = [];
       data.map(({ name }) => {
         newUsers.push(name);
       });
-      return newUsers;
+      callBack(newUsers);
     });
   }
 };

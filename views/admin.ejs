@@ -6,8 +6,8 @@
   <h1>Users list:</h1>
   <% if (users && users.length) { %>
   <ul>
-    <% users.map(({name}) => { %>
-    <li><%= name %></li>
+    <% users.map((user) => { %>
+    <li><%= user %></li>
     <% }) %>
   </ul>
   <% } else {%>
