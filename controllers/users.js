@@ -13,7 +13,7 @@ exports.getUsers = (req, res, next) => {
 
 exports.postUsers = (req, res, _next) => {
     const users = new Users(req.body.name);
-    users.saveUsers();
+    users.saveUser();
     res.redirect('back');
     return res.end();
 };
