@@ -1,9 +1,10 @@
 :root {
-  --dark-blue: #3730c5a6;
-  --blue: #5e56ffa6;
-  --light-blue: #aba9d8;
+  --dark-blue: #0049b6;
+  --blue: #5297ff;
+  --light-blue: #d6e9ff;
   --grey: #7c7c7c;
-  --white: #eeedff;
+  --white: #eeeeee;
+  --padding-user: 0.4rem 1rem;
 }
 
 * {
@@ -26,11 +27,20 @@ input {
 }
 
 button {
-  background-color: var(--white);
+  background: var(--light-blue);
   border: var(--dark-blue) 1px solid;
   box-shadow: black 2px 2px 1px;
   font-size: 15px;
   padding: 0.3em 0.7em;
+  cursor: pointer;
+}
+
+button:active:hover {
+  background: var(--dark-blue);
+}
+
+button:hover {
+  background: var(--blue);
 }
 
 .nav {
@@ -67,4 +77,16 @@ button {
 #active {
   background: var(--blue);
   border: 2px inset var(--light-blue);
+}
+
+#user-table td {
+  padding: var(--padding-user);
+  background: var(--white);
+  border: 1px solid var(--grey);
+}
+
+#user-table th {
+  padding: var(--padding-user);
+  background: var(--grey);
+  color: var(--white);
 }

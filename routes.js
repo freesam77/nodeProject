@@ -23,15 +23,12 @@ const reqHandler = (req, res) => {
         // parsing request bodies
         const body = [];
         req.on('data', (chunk) => {
-            console.log('chunk', chunk)
             body.push(chunk)
-            console.log('body', body)
         })
 
         req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             const mes = parsedBody.split('=')[1].replace(/[+]/g, " ")
-            console.log("mes", mes)
             fs.writeFile('message.txt', mes, () => {
                 res.statusCode = 302;
                 res.setHeader('Location', '/')

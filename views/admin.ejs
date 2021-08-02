@@ -3,15 +3,25 @@
 <form method="POST" action="/admin/users">
   <input type="text" name="name" />
   <button type="submit">Submit</button>
-  <h1>Users list:</h1>
-  <% if (users && users.length) { %>
-  <ul>
-    <% users.map((user) => { %>
-    <li><%= user.name %></li>
-    <% }) %>
-  </ul>
-  <% } else {%>
-  <h2>No users found!</h2>
-  <% }%>
 </form>
-<%- include('includes/end.ejs') %>
+<h1>Users list:</h1>
+<% if (users && users.length) { %>
+<table id="user-table">
+  <tr>
+    <th>No</th>
+    <th>User</th>
+    <th>Action</th>
+  </tr>
+  <% users.map((user, id) => { %>
+  <tr>
+    <td><%= id+1 %></td>
+    <td><%= user.name %></td>
+    <td>
+      <a href="/<%= user.id %>"><button>More Info</button></a>
+    </td>
+  </tr>
+  <% }) %>
+</table>
+<% } else {%>
+<h2>No users found!</h2>
+<% }%> <%- include('includes/end.ejs') %>
