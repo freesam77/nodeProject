@@ -4,9 +4,10 @@ const usersController = require('../controllers/users');
 
 const router = express.Router();
 
-const { getUsers, postUsers } = usersController;
+const { getUsers, getUser, postUsers } = usersController;
 
-router.get('/users', getUsers);
-router.post('/users', postUsers);
+router.get('/', getUsers);
+router.get('/:userid', getUser);
+router.post('/', postUsers);
 
 module.exports = router

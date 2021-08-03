@@ -2,10 +2,21 @@ const Users = require('../models/users');
 
 exports.getUsers = (req, res, next) => {
     Users.getUsers((users) => {
-        res.render('admin', {
+        res.render('users', {
             users,
-            path: `/admin${req.url}`,
-            activeAdminUsers: true,
+            path: `/users`,
+            activeUser: true,
+            title: 'Users',
+        });
+    });
+};
+
+exports.getUser = (req, res, next) => {
+    Users.getUsers((users) => {
+        res.render('users', {
+            users,
+            path: `/users${req.url}`,
+            activeUser: true,
             title: 'Users',
         });
     });

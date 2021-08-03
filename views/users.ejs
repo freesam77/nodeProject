@@ -1,6 +1,6 @@
 <%- include('includes/head.ejs') %>
 <h1>Please type your user name and click submit</h1>
-<form method="POST" action="/admin/users">
+<form method="POST" action="/users">
   <input type="text" name="name" />
   <button type="submit">Submit</button>
 </form>
@@ -17,7 +17,7 @@
     <td><%= id+1 %></td>
     <td><%= user.name %></td>
     <td>
-      <a href="/<%= user.id %>"><button>More Info</button></a>
+      <a href="/users/<%= user.id %>"><button>More Info</button></a>
     </td>
   </tr>
   <% }) %>
