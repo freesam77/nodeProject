@@ -90,3 +90,11 @@ button:hover {
   background: var(--grey);
   color: var(--white);
 }
+
+form {
+  display: inline-grid;
+}
+
+form button {
+  margin-top: 10px;
+}

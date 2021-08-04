@@ -1,7 +1,10 @@
 <%- include('includes/head.ejs') %>
 <h1>Please type your user name and click submit</h1>
 <form method="POST" action="/users">
+  <label>Name</label>
   <input type="text" name="name" />
+  <label>Email</label>
+  <input type="email" name="email" />
   <button type="submit">Submit</button>
 </form>
 <h1>Users list:</h1>
@@ -9,13 +12,19 @@
 <table id="user-table">
   <tr>
     <th>No</th>
-    <th>User</th>
+    <% for (const [key, value] of Object.entries(users[0])) { %> <% if(key !==
+    "id"){ %>
+    <th><%= key %></th>
+    <% } %> <% } %>
     <th>Action</th>
   </tr>
   <% users.map((user, id) => { %>
   <tr>
     <td><%= id+1 %></td>
-    <td><%= user.name %></td>
+    <% for (const [key, value] of Object.entries(user)) { %> <% if(key !==
+    "id"){ %>
+    <td><%= value %></td>
+    <% } %> <% } %>
     <td>
       <a href="/users/<%= user.id %>"><button>More Info</button></a>
     </td>
