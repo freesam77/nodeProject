@@ -1,0 +1,17 @@
+<%- include('includes/head.ejs') %>
+<h1>Name: <%= user.name%></h1>
+<% Object.entries(user).map((value) => { %>
+    <% const [key, val] = value %>
+    <% if(key !== 'name' && key !== 'id'){ %>
+        <p><%= `${key}: ${val}` %></p>
+    <% } %>
+<% }) %>
+<hr/>
+<button onclick="onClick()">Edit</button>
+<a href="javascript:history.go(-1)"><button>Back</button></a>
+<script>
+    const onClick = () => {
+        console.log('hello')
+    }
+</script>
+<%- include('includes/end.ejs') %>
