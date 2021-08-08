@@ -8,6 +8,10 @@
 <% }) %>
 <hr/>
 <button onclick="onClick()">Edit</button>
+<form action="/mailing-list" method="POST">
+    <button type="submit">Add to Mailing List</button>
+    <input type="hidden" name="id" value="<%= user.id %>"/>
+</form>
 <a href="javascript:history.go(-1)"><button>Back</button></a>
 <script>
     const onClick = () => {
