@@ -1,0 +1,19 @@
+<%- include('includes/head.ejs') %>
+<h1>Mailing List</h1>
+<% if (emailList && emailList.length) { %>
+<table id="user-table">
+  <tr>
+    <th>No</th>
+    <th>Email</th>
+  </tr>
+  <% emailList.map((item, id) => { %>
+  <tr>
+    <td><%= id+1 %></td>
+    <td><%= item %></td>
+  </tr>
+  <% }) %>
+</table>
+<% } else { %>
+<h2>No mails in the list!</h2>
+<% } %>
+<%- include('includes/end.ejs') %>

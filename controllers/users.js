@@ -2,6 +2,11 @@ const Users = require('../models/users');
 
 exports.getUsers = (req, res, next) => {
     Users.getUsers((users) => {
+        users.map((user) => {
+            if (user.id === undefined) {
+                user.id = uuidv4();
+            }
+        });
         res.render('users', {
             users,
             path: `/users`,
