@@ -1,21 +1,31 @@
 <%- include('includes/head.ejs') %>
 <h1>Name: <%= user.name%></h1>
-<% Object.entries(user).map((value) => { %>
-    <% const [key, val] = value %>
-    <% if(key !== 'name' && key !== 'id'){ %>
-        <p><%= `${key}: ${val}` %></p>
-    <% } %>
-<% }) %>
-<hr/>
-<button onclick="onClick()">Edit</button>
+<% Object.entries(user).map((value) => { %> <% const [key, val] = value %> <%
+if(key !== 'name' && key !== 'id'){ %>
+<p><%= `${key}: ${val}` %></p>
+<% } %> <% }) %>
+<hr />
+<button onclick="toggleEdit()" class="<%= edit ? 'active' : '' %>">Edit</button>
 <form action="/mailing-list" method="POST">
-    <button type="submit">Add to Mailing List</button>
-    <input type="hidden" name="id" value="<%= user.id %>"/>
+  <button type="submit">Add to Mailing List</button>
+  <input type="hidden" name="id" value="<%= user.id %>" />
 </form>
 <a href="javascript:history.go(-1)"><button>Back</button></a>
+<% if (edit) { %>
+<hr />
+<%- include('includes/form.ejs') %> <% } %>
 <script>
-    const onClick = () => {
-        console.log('hello')
+  const toggleEdit = () => {
+    var queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let edit;
+    if (urlParams.get('edit') === 'true') {
+      edit = false;
+    } else {
+      edit = true;
     }
+    urlParams.set('edit', edit);
+    window.location.search = urlParams;
+  };
 </script>
 <%- include('includes/end.ejs') %>

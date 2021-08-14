@@ -1,12 +1,6 @@
 <%- include('includes/head.ejs') %>
 <h1>Add new users to the list</h1>
-<form method="POST" action="/users">
-  <label>Name</label>
-  <input type="text" name="name" />
-  <label>Email</label>
-  <input type="email" name="email" />
-  <button type="submit">Submit</button>
-</form>
+<%- include('includes/form.ejs') %>
 <h1>Users list:</h1>
 <% if (users && users.length) { %>
 <table id="user-table">

@@ -43,6 +43,10 @@ button:hover {
   background: var(--blue);
 }
 
+button.active {
+  background: var(--blue);
+}
+
 .nav {
   background: #7c7c7c;
   display: flex;
@@ -65,7 +69,7 @@ button:hover {
 }
 
 .nav a:last-child {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .nav a:active:hover {
@@ -81,7 +85,7 @@ button:hover {
 .nav h1 {
   background: none;
   color: var(--white);
-  margin: var(--padding-user)
+  margin: var(--padding-user);
 }
 
 #active {
