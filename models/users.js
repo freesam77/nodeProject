@@ -25,7 +25,7 @@ module.exports = class Users {
         readFromList(targetFile, cb);
     }
 
-    static getUserId(id, cb) {
+    static getUserById(id, cb) {
         readFromList(targetFile, (users) => {
             const user = users.find((u) => u.id === id);
             cb(user);

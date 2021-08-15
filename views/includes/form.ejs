@@ -1,7 +1,11 @@
 <form method="POST" action="/users">
   <label>Name</label>
-  <input type="text" name="name" />
+  <input
+    type="text"
+    name="name"
+    value="<% if(edit && user.name){ %> <%= user.name %> <% } %>"
+  />
   <label>Email</label>
-  <input type="email" name="email" />
+  <input type="email" name="email" value="<% if(edit && user.email){ %> <%= user.email %> <% } %>" />
   <button type="submit">Submit</button>
 </form>

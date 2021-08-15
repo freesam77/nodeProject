@@ -10,7 +10,7 @@ if(key !== 'name' && key !== 'id'){ %>
   <button type="submit">Add to Mailing List</button>
   <input type="hidden" name="id" value="<%= user.id %>" />
 </form>
-<a href="javascript:history.go(-1)"><button>Back</button></a>
+<a href="/users"><button>Back</button></a>
 <% if (edit) { %>
 <hr />
 <%- include('includes/form.ejs') %> <% } %>
