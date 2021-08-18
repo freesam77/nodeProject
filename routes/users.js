@@ -9,5 +9,6 @@ const { getUsers, getUser, postUsers } = usersController;
 router.get('/', getUsers);
 router.get('/:userid', getUser);
 router.post('/', postUsers);
+router.post('/:userid', postUsers);
 
 module.exports = router
