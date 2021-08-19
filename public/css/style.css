@@ -3,6 +3,7 @@
   --blue: #5297ff;
   --light-blue: #d6e9ff;
   --grey: #7c7c7c;
+  --red: #ff5252;
   --white: #eeeeee;
   --padding-user: 0.4rem 1rem;
 }
@@ -33,6 +34,10 @@ button {
   font-size: 15px;
   padding: 0.3em 0.7em;
   cursor: pointer;
+}
+
+button.delete {
+  background: var(--red);
 }
 
 button:active:hover {

@@ -13,7 +13,6 @@ module.exports = class MailingList {
 
     saveList() {
         readFromList(mailingListFile, (mailingList, mainpath) => {
-            console.log(mailingList)
             if (!mailingList.includes(this.id)) {
                 mailingList.push(this.id);
             }

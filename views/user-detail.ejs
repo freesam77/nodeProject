@@ -7,8 +7,18 @@ if(key !== 'name' && key !== 'id'){ %>
 <hr />
 <button onclick="toggleEdit()" class="<%= edit ? 'active' : '' %>">Edit</button>
 <form action="/mailing-list" method="POST">
-  <button type="submit">Add to Mailing List</button>
   <input type="hidden" name="id" value="<%= user.id %>" />
+  <button type="submit">Add to Mailing List</button>
+</form>
+<form
+  action="/users/delete/<%= user.id %>"
+  method="POST"
+  onsubmit="deletePrompt"
+>
+  <input type="hidden" name="id" value="<%= user.id %>" />
+  <button type="submit" onclick="deletePrompt(event)" class="delete">
+    Delete
+  </button>
 </form>
 <a href="/users"><button>Back</button></a>
 <% if (edit) { %>
@@ -26,6 +36,12 @@ if(key !== 'name' && key !== 'id'){ %>
     }
     urlParams.set('edit', edit);
     window.location.search = urlParams;
+  };
+  const deletePrompt = (e) => {
+    const answer = confirm('Are you sure you want to delete this user?');
+    if (!answer) {
+      e.preventDefault();
+    }
   };
 </script>
 <%- include('includes/end.ejs') %>

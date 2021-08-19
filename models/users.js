@@ -34,6 +34,15 @@ module.exports = class Users {
     });
   }
 
+  static deleteUserById(id) {
+    readFromList(targetFile, (userList, mainpath) => {
+      let newUserList = userList.filter((user) => user.id !== id);
+      fs.writeFile(mainpath, JSON.stringify(newUserList), (err) => {
+        console.log(err);
+      });
+    });
+  }
+
   static getUsers(cb) {
     readFromList(targetFile, cb);
   }

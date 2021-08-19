@@ -42,3 +42,10 @@ exports.postUsers = (req, res, _next) => {
   res.redirect('back');
   return res.end();
 };
+
+exports.deleteUserById = (req, res, _next) => {
+  const { userid } = req.params;
+  Users.deleteUserById(userid);
+  res.redirect('/users');
+  return res.end();
+};
