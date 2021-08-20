@@ -1,1 +1,22 @@
-[{"name":"Claire Redfield","email":"claireredfield@terrasave.com","id":"e985f177-7761-4860-8c93-6d3ff8b3d993"},{"name":"Leon Scott Kennedy","email":"leonkennedy@stratcom.com","id":"cd58f230-1315-40c2-b6f9-d8b8af88384e"},{"name":"Jill Valentine","email":"jvalentine@bsaa.com","id":"87dbeb76-4cbe-46a6-a03e-23b1197e16ad"},{"name":"Ethan Winters","email":"ewinters@info.com","id":"a9473385-16f5-4599-8437-97f1f7184d7c"}]
+[
+  {
+    "name": "Claire Redfield",
+    "email": "claireredfield@terrasave.com",
+    "id": "e985f177-7761-4860-8c93-6d3ff8b3d993"
+  },
+  {
+    "name": "Leon Scott Kennedy",
+    "email": "leonkennedy@stratcom.com",
+    "id": "cd58f230-1315-40c2-b6f9-d8b8af88384e"
+  },
+  {
+    "name": "Jill Valentine",
+    "email": "jvalentine@bsaa.com",
+    "id": "87dbeb76-4cbe-46a6-a03e-23b1197e16ad"
+  },
+  {
+    "name": "Ethan Winters",
+    "email": "ewinters@info.com",
+    "id": "a9473385-16f5-4599-8437-97f1f7184d7c"
+  }
+]

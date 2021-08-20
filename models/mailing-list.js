@@ -33,11 +33,20 @@ module.exports = class MailingList {
                 let mailingList = JSON.parse(fileContent)
                 const newList = []
 
-                mailingList.map(id => {
+                mailingList.forEach(id => {
                     newList.push(users.find(user => user.id === id))
                 })
                 cb(newList)
             })
         })
+    }
+
+    static deleteListById(id) {
+        readFromList(mailingListFile, (mailingList, mainpath) => {
+            let newMailingList = mailingList.filter((userid) => userid !== id);
+            fs.writeFile(mainpath, JSON.stringify(newMailingList), (err) => {
+                console.log(err);
+            });
+        });
     }
 };

@@ -1,9 +1,11 @@
 :root {
-  --dark-blue: #0049b6;
   --blue: #5297ff;
+  --dark-blue: #0049b6;
   --light-blue: #d6e9ff;
+  --red: #fc6868;
+  --light-red: #ffb9b9;
+  --dark-red: #d12f2f;
   --grey: #7c7c7c;
-  --red: #ff5252;
   --white: #eeeeee;
   --padding-user: 0.4rem 1rem;
 }
@@ -38,6 +40,10 @@ button {
 
 button.delete {
   background: var(--red);
+}
+button.delete:hover {
+  background: var(--dark-red);
+  color: var(--white);
 }
 
 button:active:hover {
@@ -114,6 +120,6 @@ form {
   display: inline-grid;
 }
 
-form > * {
+form .submit {
   margin-top: 10px;
 }

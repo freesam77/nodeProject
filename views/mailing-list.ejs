@@ -4,16 +4,39 @@
 <table id="user-table">
   <tr>
     <th>No</th>
-    <th>Email</th>
+    <% Object.keys(emailList[0]).map(key => { %>
+    <th><%= key %></th>
+    <% }) %>
+    <th>Action</th>
   </tr>
   <% emailList.map((item, id) => { %>
   <tr>
     <td><%= id+1 %></td>
-    <td><%= item %></td>
+    <% Object.values(item).map(val => { %>
+    <td><%= val %></td>
+    <% }) %>
+    <td>
+      <form action="/mailing-list/delete/<%= item.id %>" method="POST">
+        <input type="hidden" name="id" value="<%= item.id %>" />
+        <button type="submit" onclick="deletePrompt(event)" class="delete">
+          🗑 Remove
+        </button>
+      </form>
+    </t>
   </tr>
   <% }) %>
 </table>
 <% } else { %>
 <h2>No mails in the list!</h2>
 <% } %>
+<script>
+  const deletePrompt = (e) => {
+    const answer = confirm(
+      'Are you sure to remove this user from the mailing list?'
+    );
+    if (!answer) {
+      e.preventDefault();
+    }
+  };
+</script>
 <%- include('includes/end.ejs') %>

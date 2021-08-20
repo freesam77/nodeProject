@@ -13,7 +13,6 @@ if(key !== 'name' && key !== 'id'){ %>
 <form
   action="/users/delete/<%= user.id %>"
   method="POST"
-  onsubmit="deletePrompt"
 >
   <input type="hidden" name="id" value="<%= user.id %>" />
   <button type="submit" onclick="deletePrompt(event)" class="delete">
