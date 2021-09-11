@@ -5,7 +5,9 @@ const indexRoutes = require('./routes/index');
 const mailingListRoutes = require('./routes/mailing-list');
 const rootDir = require('./util/path');
 const { get404 } = require('./controllers/error')
+const mongoConnect = require('./util/database')
 const app = express();
+
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -20,4 +22,7 @@ app.use(indexRoutes);
 // handle 404 error page
 app.use(get404);
 
-app.listen(3000);
+mongoConnect(client => {
+    console.log(client)
+    app.listen(3000)
+})
