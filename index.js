@@ -5,7 +5,8 @@ const indexRoutes = require('./routes/index');
 const mailingListRoutes = require('./routes/mailing-list');
 const rootDir = require('./util/path');
 const { get404 } = require('./controllers/error')
-const mongoConnect = require('./util/database')
+const mongoConnect = require('./util/database').mongoConnect
+// const getDb = require('./util/database').getDb
 const app = express();
 
 
@@ -23,6 +24,5 @@ app.use(indexRoutes);
 app.use(get404);
 
 mongoConnect(client => {
-    console.log(client)
     app.listen(3000)
 })
