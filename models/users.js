@@ -13,7 +13,7 @@ module.exports = class Users {
     }
     saveUser() {
         const db = getDb()
-        return db.collection('users').insertOne(this).then(res => console.log('response is', res)).catch(err => console.log(err))
+        return db.collection('users').insertOne(this).then(res => console.log('response is', res)).catch(err => { console.log(err) })
     }
 
     static deleteUserById(id) {
@@ -25,8 +25,9 @@ module.exports = class Users {
         });
     }
 
-    static getUsers(cb) {
-        readFromList(targetFile, cb);
+    static getUsers() {
+        const db = getDb()
+        return db.collection('users').find().toArray().then(res => { console.log(res); return res }).catch(err => { console.log(err) })
     }
 
     static getUserById(id, cb) {

@@ -1,20 +1,14 @@
 const Users = require('../models/users');
 
-exports.getUsers = (req, res, next) => {
-    Users.getUsers((users) => {
-        users.map((user) => {
-            if (user.id === undefined) {
-                user.id = uuidv4();
-            }
-        });
-        res.render('users', {
-            users,
-            path: `/users`,
-            activeUser: true,
-            title: 'Users',
-            edit: false,
-            user: {},
-        });
+exports.getUsers = async (req, res, next) => {
+    const users = await Users.getUsers();
+    res.render('users', {
+        users,
+        path: `/users`,
+        activeUser: true,
+        title: 'Users',
+        edit: false,
+        user: {},
     });
 };
 
