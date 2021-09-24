@@ -12,20 +12,19 @@ exports.getUsers = async (req, res, next) => {
     });
 };
 
-exports.getUser = (req, res, next) => {
-    Users.getUserById(req.params.userid, (user) => {
-        const edit = (query) => {
-            const { edit } = query;
-            return edit === 'true' ? true : false;
-        };
+exports.getUser = async (req, res, next) => {
+    const user = await Users.getUserById(req.params.userid);
+    const edit = (query) => {
+        const { edit } = query;
+        return edit === 'true' ? true : false;
+    };
 
-        res.render('user-detail', {
-            user,
-            path: `/users${req.url}`,
-            activeUser: true,
-            title: 'Users',
-            edit: edit(req.query),
-        });
+    res.render('user-detail', {
+        user,
+        path: `/users${req.url}`,
+        activeUser: true,
+        title: 'Users',
+        edit: edit(req.query),
     });
 };
 

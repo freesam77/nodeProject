@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readFromList = require('../util/read-from-list');
-const { v4: uuidv4 } = require('uuid');
+const mongoDb = require('mongodb')
 const getDb = require('../util/database').getDb
 
 const targetFile = 'users.json';
@@ -27,13 +27,16 @@ module.exports = class Users {
 
     static getUsers() {
         const db = getDb()
-        return db.collection('users').find().toArray().then(res => { console.log(res); return res }).catch(err => { console.log(err) })
+        return db.collection('users').find().toArray().then(res => res).catch(err => { console.log(err) })
     }
 
-    static getUserById(id, cb) {
-        readFromList(targetFile, (users) => {
-            const user = users.find((u) => u.id === id);
-            cb(user);
-        });
+    static async getUserById(id) {
+        try {
+            const db = getDb()
+            const findID = await db.collection('users').find({ _id: new mongoDb.ObjectId(id) }).next()
+            return findID
+        } catch (err) {
+            console.log(err)
+        }
     }
 };

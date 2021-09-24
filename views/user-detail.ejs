@@ -7,14 +7,14 @@ if(key !== 'name' && key !== 'id'){ %>
 <hr />
 <button onclick="toggleEdit()" class="<%= edit ? 'active' : '' %>">Edit</button>
 <form action="/mailing-list" method="POST">
-  <input type="hidden" name="id" value="<%= user.id %>" />
+  <input type="hidden" name="id" value="<%= user._id %>" />
   <button type="submit">Add to Mailing List</button>
 </form>
 <form
-  action="/users/delete/<%= user.id %>"
+  action="/users/delete/<%= user._id %>"
   method="POST"
 >
-  <input type="hidden" name="id" value="<%= user.id %>" />
+  <input type="hidden" name="id" value="<%= user._id %>" />
   <button type="submit" onclick="deletePrompt(event)" class="delete">
     Delete
   </button>
