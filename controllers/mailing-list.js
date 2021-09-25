@@ -1,17 +1,15 @@
 const MailingList = require('../models/mailing-list')
 
-exports.getMailingList = (req, res, next) => {
-    MailingList.getMailingList((list) => {
-        const emailList = list.filter(li => li !== undefined)
-        res.render('mailing-list', {
-            emailList,
-            path: '/mailing-list',
-            title: 'Mailing list'
-        })
+exports.getMailingList = async (_req, res, _next) => {
+    const emailList = await MailingList.getMailingList()
+    res.render('mailing-list', {
+        emailList,
+        path: '/mailing-list',
+        title: 'Mailing list'
     })
 };
 
-exports.addMailingList = (req, res, next) => {
+exports.addMailingList = (req, res, _next) => {
     const entry = new MailingList(req.body.id)
     entry.saveList()
     res.redirect('/users')

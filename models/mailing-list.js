@@ -1,52 +1,37 @@
-const fs = require('fs');
-const readFromList = require('../util/read-from-list')
-const path = require('path');
-const mainDir = require('../util/path');
-const usersFile = 'users.json'
-const mailingListFile = 'mailing-list.json'
+const getDb = require('../util/database').getDb
+const mongoDb = require('mongodb')
+
 
 module.exports = class MailingList {
     constructor(id) {
         this.id = id
     }
-
-
-    saveList() {
-        readFromList(mailingListFile, (mailingList, mainpath) => {
-            if (!mailingList.includes(this.id)) {
-                mailingList.push(this.id);
-            }
-            fs.writeFile(mainpath, JSON.stringify(mailingList), (err) => {
-                console.log(err)
-            });
-        })
+    async saveList() {
+        const db = getDb()
+        return db.collection('mailing-list').insertOne(this).then(res => console.log('response is', res)).catch(err => { console.log(err) })
     }
 
-    static getMailingList(cb) {
-        readFromList(usersFile, (users) => {
-            const mainPath = path.join(mainDir, 'data', mailingListFile);
-            fs.readFile(mainPath, (err, fileContent) => {
-                if (err) {
-                    cb([]);
-                }
-
-                let mailingList = JSON.parse(fileContent)
-                const newList = []
-
-                mailingList.forEach(id => {
-                    newList.push(users.find(user => user.id === id))
-                })
-                cb(newList)
-            })
-        })
+    static async getMailingList() {
+        // TODO: think of refactoring this to be just a state instead of using mongoDB collection
+        const db = getDb()
+        try {
+            const mailListIDQueries = await db.collection('mailing-list').find().toArray()
+            const queries = mailListIDQueries.map(({ id }) => new mongoDb.ObjectId(id))
+            const foundUsers = await db.collection('users').find({
+                '_id': { $in: [...queries] }
+            }).toArray()
+            return foundUsers
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    static deleteListById(id) {
-        readFromList(mailingListFile, (mailingList, mainpath) => {
-            let newMailingList = mailingList.filter((userid) => userid !== id);
-            fs.writeFile(mainpath, JSON.stringify(newMailingList), (err) => {
-                console.log(err);
-            });
-        });
+    static async deleteListById(id) {
+        const db = getDb()
+        try {
+            return await db.collection('mailing-list').deleteOne({ _id: new mongoDb.ObjectId(id) })
+        } catch (err) {
+            console.log(err)
+        }
     }
 };

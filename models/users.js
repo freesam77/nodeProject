@@ -1,9 +1,7 @@
 const fs = require('fs');
-const readFromList = require('../util/read-from-list');
 const mongoDb = require('mongodb')
 const getDb = require('../util/database').getDb
 
-const targetFile = 'users.json';
 
 module.exports = class Users {
     constructor(dataObj) {
@@ -11,18 +9,28 @@ module.exports = class Users {
             this[`${key}`] = value;
         }
     }
-    saveUser() {
+    async saveUser(id) {
         const db = getDb()
-        return db.collection('users').insertOne(this).then(res => console.log('response is', res)).catch(err => { console.log(err) })
+        if (id) {
+            // update the user with this id
+            try {
+                return await db.collection('users').updateOne({ _id: new mongoDb.ObjectId(id) }, { $set: { ...this } })
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            // create new entry
+            return db.collection('users').insertOne(this).then(res => console.log('response is', res)).catch(err => { console.log(err) })
+        }
     }
 
-    static deleteUserById(id) {
-        readFromList(targetFile, (userList, mainpath) => {
-            let newUserList = userList.filter((user) => user.id !== id);
-            fs.writeFile(mainpath, JSON.stringify(newUserList), (err) => {
-                console.log(err);
-            });
-        });
+    static async deleteUserById(id) {
+        const db = getDb()
+        try {
+            return await db.collection('users').deleteOne({ _id: new mongoDb.ObjectId(id) })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     static getUsers() {

@@ -9,15 +9,15 @@
     <% }) %>
     <th>Action</th>
   </tr>
-  <% emailList.map((item, id) => { %>
+  <% emailList.map((user, id) => { %>
   <tr>
     <td><%= id+1 %></td>
-    <% Object.values(item).map(val => { %>
+    <% Object.values(user).map(val => { %>
     <td><%= val %></td>
     <% }) %>
     <td>
-      <form action="/mailing-list/delete/<%= item.id %>" method="POST">
-        <input type="hidden" name="id" value="<%= item.id %>" />
+      <form action="/mailing-list/delete/<%= user._id %>" method="POST">
+        <input type="hidden" name="id" value="<%= user._id %>" />
         <button type="submit" onclick="deletePrompt(event)" class="delete">
           🗑 Remove
         </button>

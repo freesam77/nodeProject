@@ -1,6 +1,6 @@
 const Users = require('../models/users');
 
-exports.getUsers = async (req, res, next) => {
+exports.getUsers = async (_req, res, _next) => {
     const users = await Users.getUsers();
     res.render('users', {
         users,
@@ -12,7 +12,7 @@ exports.getUsers = async (req, res, next) => {
     });
 };
 
-exports.getUser = async (req, res, next) => {
+exports.getUser = async (req, res, _next) => {
     const user = await Users.getUserById(req.params.userid);
     const edit = (query) => {
         const { edit } = query;
@@ -29,9 +29,9 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.postUsers = (req, res, _next) => {
-    //   const { userid } = req.params;
+    const { userid } = req.params;
     const users = new Users(req.body);
-    users.saveUser();
+    users.saveUser(userid);
     res.redirect('back');
     return res.end();
 };
