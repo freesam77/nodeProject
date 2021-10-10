@@ -6,9 +6,10 @@ const indexRoutes = require('./routes/index');
 const mailingListRoutes = require('./routes/mailing-list');
 const rootDir = require('./util/path');
 const { get404 } = require('./controllers/error')
-const mongoConnect = require('./util/database').mongoConnect
-// const getDb = require('./util/database').getDb
 const app = express();
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 
 app.set('view engine', 'ejs');
@@ -24,6 +25,7 @@ app.use(indexRoutes);
 // handle 404 error page
 app.use(get404);
 
-mongoConnect(client => {
-    app.listen(3000)
-})
+mongoose.connect(`mongodb+srv://sam:${process.env.PASS}@cluster0.zuvwc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
+    .then(res => {
+        app.listen(3000)
+    }).catch(err => console.log(err))

@@ -1,14 +1,18 @@
 const Users = require('../models/users');
 
-exports.getUsers = async (_req, res, _next) => {
-    const users = await Users.getUsers();
-    res.render('users', {
-        users,
-        path: `/users`,
-        activeUser: true,
-        title: 'Users',
-        edit: false,
-        user: {},
+exports.getUsers = (_req, res, _next) => {
+    Users.find({}, (err, users) => {
+        if (err) {
+            console.log(err)
+        }
+        res.render('users', {
+            users,
+            path: `/users`,
+            activeUser: true,
+            title: 'Users',
+            edit: false,
+            user: {},
+        });
     });
 };
 
@@ -29,9 +33,8 @@ exports.getUser = async (req, res, _next) => {
 };
 
 exports.postUsers = (req, res, _next) => {
-    const { userid } = req.params;
-    const users = new Users(req.body);
-    users.saveUser(userid);
+    const users = new Users({ ...req.body });
+    users.save()
     res.redirect('back');
     return res.end();
 };

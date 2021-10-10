@@ -6,19 +6,17 @@
 <table id="user-table">
   <tr>
     <th>No</th>
-    <% for (const [key, value] of Object.entries(users[0])) { %> <% if(key !==
-    "id"){ %>
-    <th><%= key %></th>
-    <% } %> <% } %>
+    <th>User ID</th>
+    <th>Name</th>
+    <th>Email</th>
     <th>Action</th>
   </tr>
   <% users.map((user, id) => { %>
   <tr>
     <td><%= id+1 %></td>
-    <% for (const [key, value] of Object.entries(user)) { %> <% if(key !==
-    "id"){ %>
-    <td><%= value %></td>
-    <% } %> <% } %>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
     <td>
       <a href="/users/<%= user._id %>"><button>More Info</button></a>
     </td>
