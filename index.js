@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose')
 const usersRoutes = require('./routes/users');
 const indexRoutes = require('./routes/index');
 const mailingListRoutes = require('./routes/mailing-list');
