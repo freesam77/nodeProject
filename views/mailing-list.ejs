@@ -4,20 +4,18 @@
 <table id="user-table">
   <tr>
     <th>No</th>
-    <% Object.keys(emailList[0]).map(key => { %>
-    <th><%= key %></th>
-    <% }) %>
+    <th>Name</th>
+    <th>Email</th>
     <th>Action</th>
   </tr>
-  <% emailList.map((user, id) => { %>
+  <% emailList.map(({user_id, _id}, id) => { %>
   <tr>
     <td><%= id+1 %></td>
-    <% Object.values(user).map(val => { %>
-    <td><%= val %></td>
-    <% }) %>
+    <td><%= user_id.name %></td>
+    <td><%= user_id.email %></td>
     <td>
-      <form action="/mailing-list/delete/<%= user._id %>" method="POST">
-        <input type="hidden" name="id" value="<%= user._id %>" />
+      <form action="/mailing-list/delete/<%= _id %>" method="POST">
+        <input type="hidden" name="id" value="<%= _id %>" />
         <button type="submit" onclick="deletePrompt(event)" class="delete">
           🗑 Remove
         </button>

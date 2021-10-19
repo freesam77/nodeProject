@@ -45,7 +45,6 @@ exports.postUsers = (req, res, _next) => {
             console.log(err ? err : `Updated User: ${docs}`)
         })
     } else {
-
         const users = new Users({ ...req.body });
         users.save()
     }
