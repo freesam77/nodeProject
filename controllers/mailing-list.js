@@ -5,6 +5,7 @@ exports.getMailingList = async (_req, res, _next) => {
         if (err) {
             console.log(err)
         }
+        console.log('emailList', emailList)
         res.render('mailing-list', {
             emailList,
             path: `/mailing-list`,

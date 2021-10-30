@@ -79,7 +79,7 @@ button.active {
   border: 2px solid var(--grey);
 }
 
-.nav a:last-child {
+.nav a.right {
   margin-left: auto;
 }
 

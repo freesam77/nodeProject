@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose')
 const usersRoutes = require('./routes/users');
 const indexRoutes = require('./routes/index');
+const authRoutes = require('./routes/auth');
 const mailingListRoutes = require('./routes/mailing-list');
 const rootDir = require('./util/path');
 const { get404 } = require('./controllers/error')
@@ -21,6 +22,7 @@ app.use(express.static(path.join(rootDir, 'public')));
 app.use('/users', usersRoutes);
 app.use('/mailing-list', mailingListRoutes);
 app.use(indexRoutes);
+app.use(authRoutes);
 
 // handle 404 error page
 app.use(get404);
