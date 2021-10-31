@@ -1,15 +1,16 @@
 const MailingList = require('../models/mailing-list')
+const { getIsLoggedIn } = require('../util/auth')
 
-exports.getMailingList = async (_req, res, _next) => {
+exports.getMailingList = async (req, res, _next) => {
     MailingList.find({}, (err, emailList) => {
         if (err) {
             console.log(err)
         }
-        console.log('emailList', emailList)
         res.render('mailing-list', {
             emailList,
             path: `/mailing-list`,
             title: 'Mailing list',
+            isAuthenticated: getIsLoggedIn(req)
         });
     }).populate('user_id');
 };

@@ -1,0 +1,1 @@
+exports.getIsLoggedIn = (req) => JSON.parse(req.get('Cookie').split(';').find(str => str.includes('isLoggedIn')).trim().split('=')[1])

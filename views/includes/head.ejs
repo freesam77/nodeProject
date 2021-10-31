@@ -11,16 +11,21 @@
     <div class="nav">
       <h1>Simple Mailing List</h1>
       <a href="/" id="<%= path === '/' ? 'active' : '' %>">Home</a>
+      <% if(isAuthenticated === true) {%>
       <a href="/users" id="<%= path === '/users' ? 'active' : '' %>">Users</a>
+      <% } %>
       <a
         href="/mailing-list"
         class="right"
         id="<%= path === '/mailing-list' ? 'active' : '' %>"
         >Mailing List</a
       >
-      <a
-        href="/login"
-        >Login</a
-      >
+      <% if(isAuthenticated === true){%>
+      <form method="POST" action="/logout">
+        <button type="submit" class="delete">Logout</button>
+      </form>
+      <% }else{ %>
+      <a href="/login">Login</a>
+      <% } %>
     </div>
     <div class="content">

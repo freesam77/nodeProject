@@ -4,10 +4,8 @@ const mailingListController = require('../controllers/mailing-list');
 
 const router = express.Router();
 
-const { addMailingList, getMailingList, deleteListById } = mailingListController;
-
-router.post('/', addMailingList);
-router.get('/', getMailingList);
-router.post('/delete/:userid', deleteListById);
+router.post('/', mailingListController.addMailingList);
+router.get('/', mailingListController.getMailingList);
+router.post('/delete/:userid', mailingListController.deleteListById);
 
 module.exports = router

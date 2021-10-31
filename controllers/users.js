@@ -1,6 +1,7 @@
 const Users = require('../models/users');
+const { getIsLoggedIn } = require('../util/auth')
 
-exports.getUsers = (_req, res, _next) => {
+exports.getUsers = (req, res, _next) => {
     Users.find({}, (err, users) => {
         if (err) {
             console.log(err)
@@ -12,6 +13,7 @@ exports.getUsers = (_req, res, _next) => {
             title: 'Users',
             edit: false,
             user: {},
+            isAuthenticated: getIsLoggedIn(req)
         });
     });
 };
@@ -33,6 +35,7 @@ exports.getUser = (req, res, _next) => {
             activeUser: true,
             title: 'Users',
             edit: edit(req.query),
+            isAuthenticated: req.isLoggedIn
         });
     });
 
