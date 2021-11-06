@@ -1,7 +1,4 @@
-const { getIsLoggedIn } = require('../util/auth')
-
 exports.getLogin = (req, res, _next) => {
-    const info = getIsLoggedIn(req)
     res.render('auth/login', {
         path: `/login`,
         title: 'Login',
@@ -9,12 +6,12 @@ exports.getLogin = (req, res, _next) => {
     });
 };
 
-exports.postLogin = (_req, res, _next) => {
-    res.setHeader('Set-Cookie', 'isLoggedIn=true')
+exports.postLogin = (req, res, _next) => {
+    req.session.isLoggedIn = true
     res.redirect('/')
 };
 
-exports.postLogout = (_req, res, _next) => {
-    res.setHeader('Set-Cookie', 'isLoggedIn=false')
+exports.postLogout = (req, res, _next) => {
+    req.session.isLoggedIn = false
     res.redirect('/')
 };

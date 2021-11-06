@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const mongoose = require('mongoose')
 const usersRoutes = require('./routes/users');
@@ -18,6 +19,12 @@ app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
+const sesh = {
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false
+}
+app.use(session(sesh))
 
 app.use('/users', usersRoutes);
 app.use('/mailing-list', mailingListRoutes);
